@@ -1,2 +1,49 @@
-HTTPS https://github.com/Code-BardProject/Anime.Su.git 
+git@github.com:Code-BardProject/Anime.Su.git
+
+это наш Frontend
+HTTPS https://github.com/Code-BardProject/Anime.Su.git
 SSH  git@github.com:Code-BardProject/Anime.Su.git
+
+
+
+GitHub:
+├── Code-BardProject/Anime.Su.git (Frontend)
+└── Code-BardProject/animesu-backend.git (Backend)
+
+
+Как опубликовать Frontend в GitHub
+==================================
+
+Открой терминал в папке проекта:
+
+	cd "C:\Users\admin\Desktop\AnimeSu"
+
+Если Git еще не настроен в этом проекте:
+
+	git init
+	git branch -M main
+	git remote add origin https://github.com/Code-BardProject/Anime.Su.git
+Проверь адрес репозитория:
+
+	git remote -v
+
+Добавь файлы и создай первый коммит:
+
+	git add .
+	git commit -m "Initial commit"
+
+Опубликуй проект:
+
+	git push -u origin main
+
+При запросе GitHub авторизации используй свой GitHub-аккаунт или Personal Access Token.
+
+Для следующих изменений:
+
+	git add .
+	git commit -m "Описание изменений"
+	git push
+
+Если remote уже существует, вместо `git remote add origin` используй:
+
+	git remote set-url origin https://github.com/Code-BardProject/Anime.Su.git
