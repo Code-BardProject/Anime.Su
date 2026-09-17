@@ -1,0 +1,128 @@
+{
+  "app": {
+    "name": "Anime.Su",
+    "package": "su.anime.app",
+    "version": "1.0.0"
+  },
+  "icon": {
+    "master": {
+      "file": "fox_9tails_master.png",
+      "size": "1024x1024",
+      "description": "Квадратная мастер-иконка с девятихвостой лисой (kitsune)"
+    },
+    "ios": {
+      "AppIcon-1024": "1024x1024",
+      "AppIcon-180": "180x180",
+      "AppIcon-120": "120x120",
+      "AppIcon-87": "87x87",
+      "AppIcon-80": "80x80",
+      "AppIcon-60": "60x60",
+      "AppIcon-58": "58x58",
+      "AppIcon-40": "40x40"
+    },
+    "android": {
+      "play_store": "512x512",
+      "xxxhdpi": "192x192",
+      "xxhdpi": "144x144",
+      "xhdpi": "96x96",
+      "hdpi": "72x72",
+      "mdpi": "48x48"
+    },
+    "linux": {
+      "512": "512x512",
+      "256": "256x256",
+      "128": "128x128",
+      "64": "64x64",
+      "48": "48x48",
+      "32": "32x32",
+      "16": "16x16"
+    }
+  },
+  "splash": {
+    "phone": {
+      "file": "splash_phone.png",
+      "orientation": "portrait",
+      "aspect_ratio": "9:16",
+      "background": "gradient_purple_pink_blue",
+      "content": "centered_nine_tailed_fox"
+    },
+    "tablet": {
+      "file": "splash_tablet.png",
+      "orientation": "landscape",
+      "aspect_ratio": "4:3",
+      "background": "gradient_purple_pink_blue",
+      "content": "centered_nine_tailed_fox"
+    },
+    "dark_mode": {
+      "enabled": true,
+      "background": "dark_purple_gradient"
+    }
+  },
+  "colors": {
+    "primary": "#9B59B6",
+    "secondary": "#E91E63",
+    "accent": "#3498DB",
+    "background_light": "#FFFFFF",
+    "background_dark": "#1A0A2E"
+  },
+  "algorithms": {
+    "icon_generation": {
+      "description": "Алгоритм генерации всех размеров иконок из мастер-файла",
+      "steps": [
+        "1. Загрузить master-файл 1024x1024 (fox_9tails_master.png)",
+        "2. Применить высокое качество ресайза (Lanczos3 или Mitchell-Netravali)",
+        "3. Для каждого целевого размера создать копию с сохранением пропорций",
+        "4. Центрировать лису (safe zone 80% от края)",
+        "5. Для Android Adaptive Icon: создать foreground + background слои",
+        "6. Экспортировать в PNG с прозрачностью (если нужно) или белым фоном",
+        "7. Оптимизировать через pngquant / oxipng для уменьшения веса"
+      ],
+      "resize_method": "Lanczos3",
+      "safe_zone_percent": 80,
+      "android_adaptive": {
+        "foreground_layer": "fox_only_transparent.png",
+        "background_layer": "solid_gradient_or_white.png",
+        "mask": "circle | squircle | rounded_square"
+      }
+    },
+    "splash_adaptation": {
+      "description": "Алгоритм адаптации splash-экрана под разные устройства",
+      "steps": [
+        "1. Определить aspect ratio устройства (9:16, 9:19.5, 4:3, 16:9 и т.д.)",
+        "2. Масштабировать фоновый градиент под полный экран",
+        "3. Центрировать лису с сохранением пропорций",
+        "4. Добавить отступы (padding) не менее 10% от краёв",
+        "5. Для тёмной темы: инвертировать яркость градиента + снизить насыщенность",
+        "6. Экспортировать в нужное разрешение (например 1080x1920, 1440x2560, 2048x1536)"
+      ],
+      "centering": "absolute_center",
+      "padding_percent": 10,
+      "dark_mode_transform": {
+        "brightness": -30,
+        "saturation": -15,
+        "background": "linear-gradient(#1A0A2E, #2D1B4E)"
+      }
+    },
+    "color_extraction": {
+      "description": "Алгоритм извлечения основных цветов из иконки",
+      "method": "k-means clustering (k=5)",
+      "steps": [
+        "1. Уменьшить изображение до 100x100 для скорости",
+        "2. Применить k-means с 5 кластерами",
+        "3. Отсортировать по частоте появления",
+        "4. Выбрать primary, secondary и accent цвета"
+      ]
+    },
+    "optimization": {
+      "description": "Алгоритм оптимизации веса файлов",
+      "tools": ["oxipng", "pngquant", "zopfli"],
+      "target": {
+        "master_1024": "< 150 KB",
+        "icon_512": "< 40 KB",
+        "icon_192": "< 15 KB",
+        "splash_phone": "< 300 KB"
+      }
+    }
+  },
+  "notes": "Использовать мастер-иконку fox_9tails_master.png для генерации всех размеров. Рекомендуется инструмент flutter_launcher_icons или android-asset-studio. Алгоритмы можно реализовать через ImageMagick, Sharp (Node.js) или Pillow (Python)."
+}

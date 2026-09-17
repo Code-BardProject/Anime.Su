@@ -1,0 +1,313 @@
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+  scrollbar-width: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #e8e8f0;
+  --card: #13131c;
+  --card-foreground: #e8e8f0;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1e2e;
+  --secondary-foreground: #a0a0b8;
+  --muted: #1a1a28;
+  --muted-foreground: #6b6b8a;
+  --accent: #a855f7;
+  --accent-foreground: #ffffff;
+  --border: rgba(124, 58, 237, 0.2);
+  --ring: #7c3aed;
+  --radius: 4px;
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.8); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.glow-primary {
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+}
+
+.emoji-menu-panel {
+  background: linear-gradient(180deg, rgba(22, 22, 36, 0.96), rgba(12, 12, 20, 0.96));
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.emoji-quick-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(168, 85, 247, 0.12);
+}
+
+.emoji-category-row {
+  justify-content: center;
+}
+
+.emoji-category-item.active {
+  color: #171326;
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(216, 180, 254, 0.7);
+  box-shadow: 0 10px 18px rgba(124, 58, 237, 0.35), inset 0 0 0 1px rgba(216, 180, 254, 0.35);
+}
+
+.emoji-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.emoji-tab {
+  flex: 1;
+  min-height: 34px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 10px;
+  color: #6b6b8a;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.emoji-tab.active {
+  color: #f4eaff;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.45), rgba(168, 85, 247, 0.18));
+  box-shadow: inset 0 0 0 1px rgba(216, 180, 254, 0.35), 0 8px 18px rgba(124, 58, 237, 0.22);
+}
+
+.emoji-quick-item,
+.emoji-picker-item,
+.emoji-sticker-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.emoji-quick-item {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 21px;
+  transform-style: preserve-3d;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(124, 58, 237, 0.08));
+  border: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+.emoji-quick-item:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #171326;
+  transform: perspective(180px) rotateX(45deg) translateY(2px);
+  box-shadow: 0 10px 18px rgba(124, 58, 237, 0.55);
+}
+
+.emoji-quick-item:hover span {
+  transform: translate3d(0, 0, 15px) rotateX(-25deg);
+}
+
+.emoji-picker-item {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 19px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.emoji-picker-item:hover,
+.emoji-sticker-item:hover {
+  background: rgba(168, 85, 247, 0.2);
+  transform: scale(1.12);
+  box-shadow: 0 10px 18px rgba(124, 58, 237, 0.18);
+}
+
+.emoji-symbol-item {
+  min-height: 34px;
+  padding: 5px 7px;
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(124, 58, 237, 0.04));
+  color: #e8e8f0;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+}
+
+.emoji-symbol-item:hover {
+  background: rgba(168, 85, 247, 0.18);
+  border-color: rgba(168, 85, 247, 0.45);
+  transform: translateY(-1px);
+}
+
+.emoji-sticker-item {
+  min-height: 70px;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(124, 58, 237, 0.04));
+  padding: 4px;
+}
+
+.emoji-sticker-item img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.anime-card:hover .anime-card-overlay {
+  opacity: 1;
+}
+
+.anime-card:hover .anime-card-img {
+  transform: scale(1.04);
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 15, 0.98) 0%,
+    rgba(10, 10, 15, 0.85) 50%,
+    rgba(10, 10, 15, 0.2) 100%
+  );
+}
+
+.score-badge {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+.live-indicator {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.anime-detail-page,
+.player-page {
+  overflow-x: hidden;
+}
+
+.player-progress {
+  accent-color: var(--accent);
+  min-width: 0;
+  cursor: pointer;
+}
+
+.player-stage {
+  min-height: min(460px, 56vh);
+}
+
+.player-stage video {
+  min-height: 220px;
+}
+
+.player-stage:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+}
+
+@media (max-width: 767px) {
+  body { font-size: 13px; }
+  .anime-hero { height: 220px !important; }
+  .anime-detail-content { padding-left: 16px !important; padding-right: 16px !important; margin-top: -72px !important; }
+  .anime-cover { width: 132px !important; height: 188px !important; }
+  .anime-detail-page h1 { font-size: 30px !important; overflow-wrap: anywhere; }
+  .anime-detail-page .flex-1.pt-8 { padding-top: 0 !important; }
+  .anime-detail-page .flex-wrap.gap-6 { gap: 14px !important; }
+  .anime-tabs { overflow-x: auto; }
+  .anime-tab { flex: 1 0 auto; padding-left: 14px !important; padding-right: 14px !important; font-size: 11px !important; }
+  .anime-episode-row { gap: 10px !important; padding: 10px !important; }
+  .anime-episode-row > span { display: none; }
+  .player-page { padding-top: 48px; }
+  .player-layout { min-height: 0; }
+  .player-stage { aspect-ratio: 16 / 10 !important; max-height: none !important; }
+  .player-stage video { min-height: 220px; }
+  .player-stage .absolute.top-0 { padding: 10px !important; }
+  .player-stage .absolute.bottom-0 { padding-bottom: 8px !important; }
+  .player-stage .absolute.bottom-0 select { max-width: 68px; }
+  .player-page .lg\:w-80 { width: 100%; max-height: none !important; border-left: 0 !important; border-top: 1px solid rgba(124,58,237,0.12); }
+  .player-page .lg\:w-80 > .flex { position: sticky; top: 48px; z-index: 2; background: #0d0d14; }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .anime-detail-content { padding-left: 32px !important; padding-right: 32px !important; }
+  .anime-cover { width: 180px !important; height: 256px !important; }
+  .player-page .lg\:w-80 { width: 280px; }
+}

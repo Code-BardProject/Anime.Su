@@ -1,0 +1,10 @@
+{
+  "description": "Create and manage engaging content effortlessly with this intuitive platform designed for marketers and creators to enhance their online presence.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

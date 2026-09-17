@@ -1,0 +1,11 @@
+# Backend API URL
+VITE_API_URL=http://localhost:5003
+
+# Google OAuth
+VITE_GOOGLE_CLIENT_ID=your_google_client_id_here
+
+# Discord OAuth
+VITE_DISCORD_CLIENT_ID=your_discord_client_id_here
+
+# VK OAuth
+VITE_VK_CLIENT_ID=your_vk_client_id_here

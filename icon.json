@@ -1,0 +1,69 @@
+{
+  "app": {
+    "name": "Anime.Su",
+    "package": "su.anime.app",
+    "version": "1.0.0"
+  },
+  "icon": {
+    "master": {
+      "file": "fox_9tails_master.png",
+      "size": "1024x1024",
+      "description": "Квадратная мастер-иконка с девятихвостой лисой (kitsune)"
+    },
+    "ios": {
+      "AppIcon-1024": "1024x1024",
+      "AppIcon-180": "180x180",
+      "AppIcon-120": "120x120",
+      "AppIcon-87": "87x87",
+      "AppIcon-80": "80x80",
+      "AppIcon-60": "60x60",
+      "AppIcon-58": "58x58",
+      "AppIcon-40": "40x40"
+    },
+    "android": {
+      "play_store": "512x512",
+      "xxxhdpi": "192x192",
+      "xxhdpi": "144x144",
+      "xhdpi": "96x96",
+      "hdpi": "72x72",
+      "mdpi": "48x48"
+    },
+    "linux": {
+      "512": "512x512",
+      "256": "256x256",
+      "128": "128x128",
+      "64": "64x64",
+      "48": "48x48",
+      "32": "32x32",
+      "16": "16x16"
+    }
+  },
+  "splash": {
+    "phone": {
+      "file": "splash_phone.png",
+      "orientation": "portrait",
+      "aspect_ratio": "9:16",
+      "background": "gradient_purple_pink_blue",
+      "content": "centered_nine_tailed_fox"
+    },
+    "tablet": {
+      "file": "splash_tablet.png",
+      "orientation": "landscape",
+      "aspect_ratio": "4:3",
+      "background": "gradient_purple_pink_blue",
+      "content": "centered_nine_tailed_fox"
+    },
+    "dark_mode": {
+      "enabled": true,
+      "background": "dark_purple_gradient"
+    }
+  },
+  "colors": {
+    "primary": "#9B59B6",
+    "secondary": "#E91E63",
+    "accent": "#3498DB",
+    "background_light": "#FFFFFF",
+    "background_dark": "#1A0A2E"
+  },
+  "notes": "Использовать мастер-иконку fox_9tails_master.png для генерации всех размеров. Рекомендуется инструмент flutter_launcher_icons или android-asset-studio."
+}
